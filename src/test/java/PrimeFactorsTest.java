@@ -21,6 +21,22 @@ public class PrimeFactorsTest {
         assertEquals(List.of(2,2), factorsOf(4));
     }
 
+    @Test
+    public void 素数分析5の場合() {
+        assertEquals(List.of(5), factorsOf(5));
+    }
+
+    @Test
+    public void 素数分析6の場合() {
+        assertEquals(List.of(2,3), factorsOf(6));
+    }
+
+    @Test
+    public void 素数分析7の場合() {
+        assertEquals(List.of(7), factorsOf(7));
+    }
+
+
     private List<Integer> factorsOf(int n) {
         var factors = new ArrayList<Integer>();
         if (n > 1) {
