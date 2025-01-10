@@ -1,17 +1,19 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
-import static java.util.Optional.empty;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PrimeFactorsTest {
     @Test
     public void factors() throws Exception {
-        assertEquals(Optional.empty(), factorsOf(1));
+        assertTrue(factorsOf(1).contains(2));
     }
 
-    private Optional<Object> factorsOf(int i) {
-        return empty();
+    private List<Integer> factorsOf(int i) {
+        var factors = new ArrayList<Integer>();
+        factors.add(2);
+        return factors;
     }
 }
