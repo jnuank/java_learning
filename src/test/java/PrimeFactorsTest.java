@@ -46,17 +46,20 @@ public class PrimeFactorsTest {
         assertEquals(List.of(3,3), factorsOf(9));
     }
 
+    @Test
+    public void 素数分析10の場合() {
+        assertEquals(List.of(2,5), factorsOf(10));
+    }
+
     private List<Integer> factorsOf(int n) {
         var factors = new ArrayList<Integer>();
-        if (n > 1) {
-            while (n % 2 == 0) {
-                factors.add(2);
-                n /= 2;
+        var divider = 2;
+        while (n > 1) {
+            while (n % divider == 0) {
+                factors.add(divider);
+                n /= divider;
             }
-            while (n % 3 == 0) {
-                factors.add(3);
-                n /= 3;
-            }
+            divider++;
         }
         if (n > 1) {
             factors.add(n);
