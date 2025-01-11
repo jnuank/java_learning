@@ -41,6 +41,11 @@ public class PrimeFactorsTest {
         assertEquals(List.of(2,2,2), factorsOf(8));
     }
 
+    @Test
+    public void 素数分析9の場合() {
+        assertEquals(List.of(3,3), factorsOf(9));
+    }
+
     private List<Integer> factorsOf(int n) {
         var factors = new ArrayList<Integer>();
         if (n > 1) {
