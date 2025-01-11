@@ -26,6 +26,6 @@ public class Game {
     }
 
     private boolean isSpare(int frameIndex) {
-        return false;
+        return rolls[frameIndex] + rolls[frameIndex + 1] == 10;
     }
 }
