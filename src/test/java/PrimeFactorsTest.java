@@ -36,11 +36,15 @@ public class PrimeFactorsTest {
         assertEquals(List.of(7), factorsOf(7));
     }
 
+    @Test
+    public void 素数分析8の場合() {
+        assertEquals(List.of(2,2,2), factorsOf(8));
+    }
 
     private List<Integer> factorsOf(int n) {
         var factors = new ArrayList<Integer>();
         if (n > 1) {
-            if (n % 2 == 0) {
+            while (n % 2 == 0) {
                 factors.add(2);
                 n /= 2;
             }
