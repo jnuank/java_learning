@@ -16,7 +16,8 @@ public class Game {
 
         for (int frame = 0; frame < 10; frame++) {
             if (isStrike(frameIndex)){
-                return 20;
+                score += 10 + rolls[frameIndex + 1] + rolls[frameIndex + 2];
+                frameIndex ++;
             } else if (isSpare(frameIndex)){
                 score += 10 + rolls[frameIndex + 2];
                 frameIndex += 2;
