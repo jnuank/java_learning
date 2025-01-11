@@ -53,16 +53,11 @@ public class PrimeFactorsTest {
 
     private List<Integer> factorsOf(int n) {
         var factors = new ArrayList<Integer>();
-        var divider = 2;
-        while (n > 1) {
-            while (n % divider == 0) {
-                factors.add(divider);
-                n /= divider;
+
+        for (int divisor = 2; n > 1; divisor++) {
+            for (; n % divisor == 0; n /= divisor) {
+                factors.add(divisor);
             }
-            divider++;
-        }
-        if (n > 1) {
-            factors.add(n);
         }
         return factors;
     }
