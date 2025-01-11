@@ -13,11 +13,6 @@ public class BowlingTest {
     }
 
     @Test
-    public void Rollする() {
-        game.roll(0);
-    }
-
-    @Test
     public void スコア計算する() {
         for (int i=0; i<20; i++) {
             game.roll(0);
