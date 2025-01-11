@@ -41,4 +41,14 @@ public class BowlingTest {
         assertEquals(24, game.score());
     }
 
+    @Test
+    public void ワンストライクを取った場合() {
+        game.roll(10);
+        game.roll(3);
+        game.roll(2);
+        rollMany(0, 16);
+
+        assertEquals(20, game.score());
+    }
+
 }
