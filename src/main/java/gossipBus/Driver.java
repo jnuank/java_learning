@@ -1,8 +1,13 @@
 package gossipBus;
 
 public class Driver {
-    public String getStop() {
+    private String nextStop = "stop1";
 
-        return "stop1";
+    public String getStop() {
+        return nextStop;
+    }
+
+    public void drive() {
+        nextStop = "stop2";
     }
 }
