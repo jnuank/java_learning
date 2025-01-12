@@ -8,6 +8,10 @@ public class Driver {
     }
 
     public void drive() {
-        nextStop = "stop2";
+        if(nextStop.equals("stop2")){
+            nextStop = "stop1";
+        }else {
+            nextStop = "stop2";
+        }
     }
 }
