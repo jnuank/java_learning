@@ -26,9 +26,8 @@ public class GossipTest {
 
         route1 = new Route(stop1);
         route2 = new Route(stop2);
-
-        driver1 = new Driver();
-        driver2 = new Driver();
+        driver1 = new Driver(route1);
+        driver2 = new Driver(route2);
 
         stop1.addDriver(driver1);
         stop1.addDriver(driver2);
