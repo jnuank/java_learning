@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Stack;
 
 import static java.util.Collections.emptyList;
 import static org.junit.jupiter.api.Assertions.*;
@@ -140,6 +141,37 @@ public class GossipTest {
     @Test
     public void 噂話が広がるまでどのくらいか() {
         assertEquals(1, Simulation.driveTillEqual(driver1, driver2));
+    }
+
+    @Test
+    public void 受け入れテスト1() {
+        BusStop stop1 = new BusStop();
+        BusStop stop2 = new BusStop();
+        BusStop stop3 = new BusStop();
+        BusStop stop4 = new BusStop();
+        BusStop stop5 = new BusStop();
+        Route route1 = new Route(stop3, stop1, stop2, stop3);
+        Route route2 = new Route(stop3, stop2, stop3, stop1);
+        Route route3 = new Route(stop4, stop2, stop3, stop4, stop5);
+        Driver driver1 = new Driver(route1, new Rumor("rumor1"));
+        Driver driver2 = new Driver(route2, new Rumor("rumor2"));
+        Driver driver3 = new Driver(route3, new Rumor("rumor3"));
+
+        assertEquals(6, Simulation.driveTillEqual(driver1, driver2, driver3));
+    }
+
+    @Test
+    public void 受け入れテスト2() {
+        BusStop stop1 = new BusStop();
+        BusStop stop2 = new BusStop();
+        BusStop stop5 = new BusStop();
+        BusStop stop8 = new BusStop();
+        Route route1 = new Route(stop2, stop1, stop2);
+        Route route2 = new Route(stop5, stop2, stop8);
+        Driver driver1 = new Driver(route1, new Rumor("rumor1"));
+        Driver driver2 = new Driver(route2, new Rumor("rumor2"));
+
+        assertEquals(480, Simulation.driveTillEqual(driver1, driver2));
     }
 
 }
