@@ -3,12 +3,21 @@ package gossipBus;
 public class Route {
 
     private BusStop busStop;
+    private BusStop[] stops;
 
-    public Route (BusStop busStop) {
-        this.busStop = busStop;
+    public Route (BusStop... busStop) {
+        this.stops = busStop;
     }
 
-    public void leave(Driver driver) {
-        busStop.removeDriver(driver);
+    public void leave(Driver driver, int stopNumber) {
+        stops[stopNumber].removeDriver(driver);
+    }
+
+    public int getNextStop(int stopNumber) {
+        return (stopNumber + 1) % stops.length;
+    }
+
+    public void stopAt(Driver driver, int stopNumber) {
+        stops[stopNumber].addDriver(driver);
     }
 }

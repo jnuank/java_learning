@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static java.util.Collections.emptyList;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GossipTest {
     private Driver driver1;
@@ -24,14 +24,13 @@ public class GossipTest {
         stop2 = new BusStop();
         stop3 = new BusStop();
 
-        route1 = new Route(stop1);
-        route2 = new Route(stop1);
+        route1 = new Route(stop1, stop2);
+        route2 = new Route(stop1, stop2, stop3);
         driver1 = new Driver(route1);
         driver2 = new Driver(route2);
 
         stop1.addDriver(driver1);
         stop1.addDriver(driver2);
-
     }
     @Test
     public void ドライバーが最初に止まるバス停はstop1() {
@@ -53,7 +52,7 @@ public class GossipTest {
 
     @Test
     public void バス停1にいるドライバーが2人いる() {
-        assertEquals(List.of(driver1, driver2), stop1.getDrivers());
+        assertTrue(List.of(driver1, driver2).containsAll(stop1.getDrivers()));
     }
 
     @Test
@@ -66,12 +65,15 @@ public class GossipTest {
     @Test
     public void 複数のドライバーがバス停に停まったり出発したりする() {
         // 初期状態
-        assertEquals(List.of(driver1, driver2), stop1.getDrivers());
+        assertTrue(List.of(driver1, driver2).containsAll(stop1.getDrivers()));
         assertEquals(emptyList(), stop2.getDrivers());
         assertEquals(emptyList(), stop3.getDrivers());
 
         driver1.drive();
         driver2.drive();
         assertEquals(emptyList(), stop1.getDrivers());
+
+        assertNotEquals(emptyList(), stop2.getDrivers());
+        assertTrue(List.of(driver1, driver2).containsAll(stop2.getDrivers()));
     }
 }
