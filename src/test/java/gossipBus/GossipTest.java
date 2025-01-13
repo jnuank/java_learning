@@ -129,4 +129,12 @@ public class GossipTest {
         asserDriverHasRumors(driver2, Set.of(rumor1, rumor3, rumor2));
     }
 
+    @Test
+    public void 同じバス停で噂話をしても重複はしない() {
+        stop1.gossip();
+        stop1.gossip();
+        asserDriverHasRumors(driver1, Set.of(rumor1, rumor3, rumor2));
+        asserDriverHasRumors(driver2, Set.of(rumor1, rumor3, rumor2));
+    }
+
 }
