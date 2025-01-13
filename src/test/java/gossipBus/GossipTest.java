@@ -25,7 +25,7 @@ public class GossipTest {
         stop3 = new BusStop();
 
         route1 = new Route(stop1);
-        route2 = new Route(stop2);
+        route2 = new Route(stop1);
         driver1 = new Driver(route1);
         driver2 = new Driver(route2);
 
@@ -72,8 +72,6 @@ public class GossipTest {
 
         driver1.drive();
         driver2.drive();
-//        stop1.removeDriver(driver1);
-//        stop1.removeDriver(driver2);
         assertEquals(emptyList(), stop1.getDrivers());
     }
 }
