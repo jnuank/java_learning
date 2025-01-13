@@ -19,4 +19,8 @@ public class Route {
     public void stopAt(Driver driver, int stopNumber) {
         stops[stopNumber].addDriver(driver);
     }
+
+    public BusStop get(int stopNumber) {
+        return stops[stopNumber];
+    }
 }

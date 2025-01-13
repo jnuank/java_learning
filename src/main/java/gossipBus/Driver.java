@@ -1,6 +1,5 @@
 package gossipBus;
 
-import java.util.Collection;
 import java.util.Set;
 
 public class Driver {
@@ -14,8 +13,10 @@ public class Driver {
         this.rumors = Set.of(rumors);
     }
 
-    public String getStop() {
-        return nextStop;
+    public BusStop getStop() {
+        return route.get(stopNumber);
+//        throw new UnsupportedOperationException("Not implemented yet");
+//        return null;
     }
 
     public void drive() {
