@@ -3,7 +3,6 @@ package gossipBus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.Collections.emptyList;
@@ -65,15 +64,21 @@ public class GossipTest {
     @Test
     public void 複数のドライバーがバス停に停まったり出発したりする() {
         // 初期状態
-        assertTrue(List.of(driver1, driver2).containsAll(stop1.getDrivers()));
+        assertDriversOnBusStop(stop1, List.of(driver1, driver2));
         assertEquals(emptyList(), stop2.getDrivers());
         assertEquals(emptyList(), stop3.getDrivers());
 
+        // driver1とdriver2が移動
         driver1.drive();
         driver2.drive();
         assertEquals(emptyList(), stop1.getDrivers());
+        assertDriversOnBusStop(stop2, List.of(driver1, driver2));
+        assertEquals(emptyList(), stop3.getDrivers());
 
-        assertNotEquals(emptyList(), stop2.getDrivers());
-        assertTrue(List.of(driver1, driver2).containsAll(stop2.getDrivers()));
+    }
+
+    private void assertDriversOnBusStop(BusStop stop, List<Driver> drivers) {
+        assertNotEquals(emptyList(), stop.getDrivers());
+        assertTrue(drivers.containsAll(stop.getDrivers()));
     }
 }
