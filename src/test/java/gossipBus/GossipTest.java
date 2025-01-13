@@ -3,7 +3,9 @@ package gossipBus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static java.util.Collections.emptyList;
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,6 +40,7 @@ public class GossipTest {
         stop1.addDriver(driver1);
         stop1.addDriver(driver2);
     }
+
     @Test
     public void ドライバーが最初に止まるバス停はstop1() {
         assertEquals("stop1", driver1.getStop());
@@ -99,16 +102,17 @@ public class GossipTest {
     }
 
     private void assertDriversOnBusStop(BusStop stop, List<Driver> drivers) {
-        assertNotEquals(emptyList(), stop.getDrivers());
-        for (var driver : drivers) {
-            assertTrue(stop.getDrivers().contains(driver), "not contain: %s".formatted(driver));
-        }
+        assertEquals(new HashSet<>(stop.getDrivers()), new HashSet<>(drivers));
+    }
+
+    private void asserDriverHasRumors(Driver driver, Set<Rumor> rumors) {
+        assertEquals(rumors, driver.getRumors());
     }
 
     @Test
     public void 運転前のドライバーが持っている噂話() {
         assertTrue(driver1.getRumors().contains(rumor1));
-        assertTrue(driver2.getRumors().contains(rumor2));
-        assertTrue(driver2.getRumors().contains(rumor3));
+        asserDriverHasRumors(driver2, Set.of(rumor3, rumor2));
     }
+
 }
