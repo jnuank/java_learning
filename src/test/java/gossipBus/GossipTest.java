@@ -75,10 +75,18 @@ public class GossipTest {
         assertDriversOnBusStop(stop2, List.of(driver1, driver2));
         assertEquals(emptyList(), stop3.getDrivers());
 
+        // driver1とdriver2が移動
+        driver1.drive();
+        driver2.drive();
+        assertDriversOnBusStop(stop1, List.of(driver1));
+
+
     }
 
     private void assertDriversOnBusStop(BusStop stop, List<Driver> drivers) {
         assertNotEquals(emptyList(), stop.getDrivers());
-        assertTrue(drivers.containsAll(stop.getDrivers()));
+        for (var driver : drivers) {
+            assertTrue(stop.getDrivers().contains(driver), "not contain: %s".formatted(driver));
+        }
     }
 }
