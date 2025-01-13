@@ -137,4 +137,9 @@ public class GossipTest {
         asserDriverHasRumors(driver2, Set.of(rumor1, rumor3, rumor2));
     }
 
+    @Test
+    public void 噂話が広がるまでどのくらいか() {
+        assertEquals(1, Simulation.driveTillEqual(driver1, driver2));
+    }
+
 }
