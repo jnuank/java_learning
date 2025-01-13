@@ -15,18 +15,24 @@ public class GossipTest {
     private BusStop stop1;
     private BusStop stop2;
     private BusStop stop3;
+    private Route route1;
+    private Route route2;
 
     @BeforeEach
     public void setUp() {
+        stop1 = new BusStop();
+        stop2 = new BusStop();
+        stop3 = new BusStop();
+
+        route1 = new Route(stop1);
+        route2 = new Route(stop2);
+
         driver1 = new Driver();
         driver2 = new Driver();
 
-        stop1 = new BusStop();
         stop1.addDriver(driver1);
         stop1.addDriver(driver2);
 
-        stop2 = new BusStop();
-        stop3 = new BusStop();
     }
     @Test
     public void ドライバーが最初に止まるバス停はstop1() {
@@ -67,8 +73,8 @@ public class GossipTest {
 
         driver1.drive();
         driver2.drive();
-        stop1.removeDriver(driver1);
-        stop1.removeDriver(driver2);
+//        stop1.removeDriver(driver1);
+//        stop1.removeDriver(driver2);
         assertEquals(emptyList(), stop1.getDrivers());
     }
 }
