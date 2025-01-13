@@ -16,17 +16,24 @@ public class GossipTest {
     private BusStop stop3;
     private Route route1;
     private Route route2;
+    private Rumor rumor1;
+    private Rumor rumor2;
+    private Rumor rumor3;
 
     @BeforeEach
     public void setUp() {
+        rumor1 = new Rumor("rumor1");
+        rumor2 = new Rumor("rumor2");
+        rumor3 = new Rumor("rumor3");
+
         stop1 = new BusStop();
         stop2 = new BusStop();
         stop3 = new BusStop();
 
         route1 = new Route(stop1, stop2);
         route2 = new Route(stop1, stop2, stop3);
-        driver1 = new Driver(route1);
-        driver2 = new Driver(route2);
+        driver1 = new Driver(route1, rumor1);
+        driver2 = new Driver(route2, rumor2, rumor3);
 
         stop1.addDriver(driver1);
         stop1.addDriver(driver2);
@@ -96,5 +103,12 @@ public class GossipTest {
         for (var driver : drivers) {
             assertTrue(stop.getDrivers().contains(driver), "not contain: %s".formatted(driver));
         }
+    }
+
+    @Test
+    public void 運転前のドライバーが持っている噂話() {
+        assertTrue(driver1.getRumors().contains(rumor1));
+        assertTrue(driver2.getRumors().contains(rumor2));
+        assertTrue(driver2.getRumors().contains(rumor3));
     }
 }

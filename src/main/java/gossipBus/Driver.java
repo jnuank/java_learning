@@ -1,12 +1,17 @@
 package gossipBus;
 
+import java.util.Collection;
+import java.util.Set;
+
 public class Driver {
     private String nextStop = "stop1";
     private Route route;
     private int stopNumber = 0;
+    private Set<Rumor> rumors;
 
-    public Driver(Route route) {
+    public Driver(Route route, Rumor... rumors) {
         this.route = route;
+        this.rumors = Set.of(rumors);
     }
 
     public String getStop() {
@@ -22,5 +27,9 @@ public class Driver {
         }else {
             nextStop = "stop2";
         }
+    }
+
+    public Set<Rumor> getRumors() {
+        return rumors;
     }
 }
