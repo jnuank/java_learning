@@ -115,4 +115,18 @@ public class GossipTest {
         asserDriverHasRumors(driver2, Set.of(rumor3, rumor2));
     }
 
+    @Test
+    public void バス停に誰もいない時は噂話はない() {
+        stop2.gossip();
+        assertTrue(driver1.getRumors().contains(rumor1));
+        asserDriverHasRumors(driver2, Set.of(rumor3, rumor2));
+    }
+
+    @Test
+    public void バス停1にいるドライバーたちが噂話をする() {
+        stop1.gossip();
+        asserDriverHasRumors(driver1, Set.of(rumor1, rumor3, rumor2));
+        asserDriverHasRumors(driver2, Set.of(rumor1, rumor3, rumor2));
+    }
+
 }

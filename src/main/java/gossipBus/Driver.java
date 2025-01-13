@@ -32,4 +32,8 @@ public class Driver {
     public Set<Rumor> getRumors() {
         return rumors;
     }
+
+    public void addRumors(Set<Rumor> rumorsAtStop) {
+        rumors = rumorsAtStop;
+    }
 }
