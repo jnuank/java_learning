@@ -6,16 +6,27 @@ import org.junit.jupiter.api.Test;
 import java.util.Collections;
 import java.util.List;
 
+import static java.util.Collections.emptyList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GossipTest {
     private Driver driver1;
     private Driver driver2;
+    private BusStop stop1;
+    private BusStop stop2;
+    private BusStop stop3;
 
     @BeforeEach
     public void setUp() {
         driver1 = new Driver();
         driver2 = new Driver();
+
+        stop1 = new BusStop();
+        stop1.addDriver(driver1);
+        stop1.addDriver(driver2);
+
+        stop2 = new BusStop();
+        stop3 = new BusStop();
     }
     @Test
     public void ドライバーが最初に止まるバス停はstop1() {
@@ -37,9 +48,6 @@ public class GossipTest {
 
     @Test
     public void バス停1にいるドライバーが2人いる() {
-        var stop1 = new BusStop();
-        stop1.addDriver(driver1);
-        stop1.addDriver(driver2);
         assertEquals(List.of(driver1, driver2), stop1.getDrivers());
     }
 
@@ -47,6 +55,20 @@ public class GossipTest {
     public void バス停2にいるドライバーはいない() {
         var stop2 = new BusStop();
 
-        assertEquals(Collections.emptyList(), stop2.getDrivers());
+        assertEquals(emptyList(), stop2.getDrivers());
+    }
+
+    @Test
+    public void 複数のドライバーがバス停に停まったり出発したりする() {
+        // 初期状態
+        assertEquals(List.of(driver1, driver2), stop1.getDrivers());
+        assertEquals(emptyList(), stop2.getDrivers());
+        assertEquals(emptyList(), stop3.getDrivers());
+
+        driver1.drive();
+        driver2.drive();
+        stop1.removeDriver(driver1);
+        stop1.removeDriver(driver2);
+        assertEquals(emptyList(), stop1.getDrivers());
     }
 }
