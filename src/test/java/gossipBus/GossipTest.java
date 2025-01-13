@@ -82,6 +82,12 @@ public class GossipTest {
         assertEquals(emptyList(), stop2.getDrivers());
         assertDriversOnBusStop(stop3, List.of(driver2));
 
+        // 最後
+        driver1.drive();
+        driver2.drive();
+        assertDriversOnBusStop(stop1, List.of(driver2));
+        assertDriversOnBusStop(stop2, List.of(driver1));
+        assertEquals(emptyList(), stop3.getDrivers());
 
     }
 
