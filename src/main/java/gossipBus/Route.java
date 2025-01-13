@@ -2,7 +2,6 @@ package gossipBus;
 
 public class Route {
 
-    private BusStop busStop;
     private BusStop[] stops;
 
     public Route (BusStop... busStop) {
